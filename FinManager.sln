@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinManager", "FinManager\FinManager.csproj", "{E1B1C36F-4BCE-4F91-8809-5FAE560434BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1B1C36F-4BCE-4F91-8809-5FAE560434BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1B1C36F-4BCE-4F91-8809-5FAE560434BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1B1C36F-4BCE-4F91-8809-5FAE560434BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1B1C36F-4BCE-4F91-8809-5FAE560434BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E463B3C1-1EF1-4708-9D86-0755FD41060E}
+	EndGlobalSection
+EndGlobal
