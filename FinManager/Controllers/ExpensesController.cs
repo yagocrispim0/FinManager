@@ -1,12 +1,33 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FinManager.Models.ViewModel;
+using FinManager.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FinManager.Controllers
 {
     public class ExpensesController : Controller
     {
+        private readonly ExpenseService _expenseService;
+        private readonly DoerService _doerService;
+
+        public ExpensesController(ExpenseService expenseService, DoerService doerService)
+        {
+            _expenseService = expenseService;
+            _doerService = doerService;
+        }
+
+
         public IActionResult Index()
         {
-            return View();
+            var list = _expenseService.FindAll();
+            return View(list);
+        }
+
+        public IActionResult create()
+        {
+
+            var doers = _doerService.FindAll();
+            var viewModel = new ExpenseFormViewModel { Doers= doers };
+            return View(viewModel);
         }
     }
 }

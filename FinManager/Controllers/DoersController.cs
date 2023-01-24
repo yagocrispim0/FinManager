@@ -51,8 +51,7 @@ namespace FinManager.Controllers
         // GET: Doers/Create
         public IActionResult Create()
         {
-            var doer = new Doer();
-            return View(doer);
+            return View();
         }
 
         // POST: Doers/Create
@@ -60,10 +59,15 @@ namespace FinManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Doer doer)
+        public async Task<IActionResult> Create([Bind("Id,Name")] Doer doer)
         {
-            _doerService.Insert(doer);
-            return RedirectToAction(nameof(Create));
+            if (ModelState.IsValid)
+            {
+                _context.Add(doer);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(doer);
         }
 
         // GET: Doers/Edit/5
