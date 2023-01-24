@@ -1,4 +1,5 @@
-﻿using FinManager.Models.ViewModel;
+﻿using FinManager.Models;
+using FinManager.Models.ViewModel;
 using FinManager.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,7 @@ namespace FinManager.Controllers
             return View(list);
         }
 
+        //Get
         public IActionResult create()
         {
 
@@ -29,5 +31,15 @@ namespace FinManager.Controllers
             var viewModel = new ExpenseFormViewModel { Doers= doers };
             return View(viewModel);
         }
+
+        //Post
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult create(Expense expense)
+        {
+            _expenseService.Insert(expense);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
