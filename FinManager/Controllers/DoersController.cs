@@ -8,12 +8,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FinManager.Data;
 using FinManager.Models;
+using FinManager.Services;
 
 namespace FinManager.Controllers
 {
     public class DoersController : Controller
     {
         private readonly FinManagerContext _context;
+        private readonly DoerService _doerService;
 
         public DoersController(FinManagerContext context)
         {
@@ -23,9 +25,9 @@ namespace FinManager.Controllers
         // GET: Doers
         public async Task<IActionResult> Index()
         {
-              return _context.Doer != null ? 
-                          View(await _context.Doer.ToListAsync()) :
-                          Problem("Entity set 'FinManagerContext.Doer'  is null.");
+            return _context.Doer != null ?
+                        View(await _context.Doer.ToListAsync()) :
+                        Problem("Entity set 'SalesWebMvcContext.Department'  is null.");
         }
 
         // GET: Doers/Details/5
@@ -49,7 +51,8 @@ namespace FinManager.Controllers
         // GET: Doers/Create
         public IActionResult Create()
         {
-            return View();
+            var doer = new Doer();
+            return View(doer);
         }
 
         // POST: Doers/Create
@@ -57,15 +60,10 @@ namespace FinManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Doer doer)
+        public async Task<IActionResult> Create(Doer doer)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(doer);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(doer);
+            _doerService.Insert(doer);
+            return RedirectToAction(nameof(Create));
         }
 
         // GET: Doers/Edit/5
