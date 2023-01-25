@@ -17,9 +17,10 @@ namespace FinManager.Controllers
         private readonly FinManagerContext _context;
         private readonly DoerService _doerService;
 
-        public DoersController(FinManagerContext context)
+        public DoersController(FinManagerContext context, DoerService doerService)
         {
             _context = context;
+            _doerService = doerService;
         }
 
         // GET: Doers

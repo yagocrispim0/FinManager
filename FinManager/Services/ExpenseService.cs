@@ -16,7 +16,7 @@ namespace FinManager.Services
 
         public List<Expense> FindAll()
         {
-            return _context.Expense.OrderBy(x => x.Date).ToList();       
+            return _context.Expense.Include(obj => obj.Doer).OrderBy(x => x.Date).ToList();       
         }
 
         public void Insert(Expense expense)
@@ -25,7 +25,7 @@ namespace FinManager.Services
             _context.SaveChanges();
         }
 
-        public Expense FindById(int id)
+        public Expense FindById(int? id)
         {
             return _context.Expense.Include(obj => obj.Doer).FirstOrDefault(obj => obj.Id == id);
         }

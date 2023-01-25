@@ -16,7 +16,7 @@ namespace FinManager.Services
 
         public List<Income> FindAll()
         {
-            return _context.Income.OrderBy(x => x.Date).ToList();
+            return _context.Income.Include(obj => obj.Doer).OrderBy(x => x.Date).ToList();
         }
 
         public void Insert(Income income)
