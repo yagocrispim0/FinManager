@@ -25,12 +25,12 @@ namespace FinManager.Services
             _context.SaveChanges();
         }
 
-        public Income FindById(int id)
+        public Income FindById(int? id)
         {
             return _context.Income.Include(obj => obj.Doer).FirstOrDefault(obj => obj.Id == id);
         }
 
-        public void Remove(int id)
+        public void Remove(int? id)
         {
             var obj = _context.Income.Find(id);
             _context.Income.Remove(obj);
